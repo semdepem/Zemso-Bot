@@ -2,11 +2,10 @@ const { EmbedBuilder, ApplicationCommandOptionType } = require('discord.js');
 
 module.exports = {
     name: 'userinfo',
-    description: 'Show the users information',
+    description: 'Show the user\'s information',
 
     callback: async (client, interaction) => {
         await interaction.deferReply();
-
 
         const targetUserInput = interaction.options.get('target-user')?.value;
 
@@ -15,18 +14,26 @@ module.exports = {
             if (targetUserInput.startsWith('<@') && targetUserInput.endsWith('>')) {
                 const userId = targetUserInput.slice(2, -1);
                 targetUser = await client.users.fetch(userId);
-            }  
-            else {
+            } else {
                 targetUser = await client.users.fetch(targetUserInput);
             }
         } else {
             targetUser = interaction.user;
         }
 
+        const member = await interaction.guild.members.fetch(targetUser.id); // Fetch the member to get guild-specific information
+        const roles = member.roles.cache.map(role => role.name);
+        const highestRole = member.roles.highest.name;
+
         const embed = new EmbedBuilder()
             .setColor('#' + (Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0'))
             .setTitle(`User Info - ${targetUser.tag}`)
-            .setImage(targetUser.displayAvatarURL({ dynamic: true, size: 512 }));
+            .setThumbnail(targetUser.displayAvatarURL())
+            .setFields(
+                { name: 'Account Created', value: targetUser.createdAt.toUTCString(), inline: true },
+                { name: 'Joined Guild', value: member.joinedAt.toUTCString(), inline: true },
+                { name: 'Highest Role', value: highestRole, inline: false },
+            )
 
         await interaction.editReply({ embeds: [embed] });
     },
@@ -34,9 +41,9 @@ module.exports = {
     options: [
         {
             name: 'target-user',
-            description: 'Shows the users info',
+            description: 'Show the user\'s info',
             required: false,
             type: ApplicationCommandOptionType.String,
         },
     ],
-}
+};
