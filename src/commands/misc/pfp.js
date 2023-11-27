@@ -6,24 +6,19 @@ module.exports = {
 
     callback: async (client, interaction) => {
         await interaction.deferReply();
-
-        // Check if a user was mentioned in the command
+       
         const targetUserInput = interaction.options.get('target-user')?.value;
-
-        // If a user was mentioned, try fetching their information
+   
         let targetUser;
         if (targetUserInput) {
-            // Check if the input is a mention
             if (targetUserInput.startsWith('<@') && targetUserInput.endsWith('>')) {
                 const userId = targetUserInput.slice(2, -1);
                 targetUser = await client.users.fetch(userId);
             }  
             else {
-                // If it's not a mention, assume it's a user ID
                 targetUser = await client.users.fetch(targetUserInput);
             }
         } else {
-            // If no user was mentioned, use the author of the command
             targetUser = interaction.user;
         }
 

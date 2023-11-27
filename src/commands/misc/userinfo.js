@@ -21,7 +21,7 @@ module.exports = {
             targetUser = interaction.user;
         }
 
-        const member = await interaction.guild.members.fetch(targetUser.id); // Fetch the member to get guild-specific information
+        const member = await interaction.guild.members.fetch(targetUser.id); 
         const roles = member.roles.cache.map(role => role.name);
         const highestRole = member.roles.highest.name;
 
