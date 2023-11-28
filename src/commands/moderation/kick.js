@@ -27,7 +27,7 @@ module.exports = {
         }
 
         const targetUserRolePosition = targetUser.roles.highest.position; //Highest role of target user
-        const requestUserRolePosition = interaction.member.roles.highest.position; //Higest role of the user running the command
+        const requestUserRolePosition = interaction.member.roles.highest.position; //Highest role of the user running the command
         const botRolePosition = interaction.guild.members.me.roles.highest.position; // highest role of the bot
 
         if(targetUserRolePosition >= requestUserRolePosition){
