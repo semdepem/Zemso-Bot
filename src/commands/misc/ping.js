@@ -10,7 +10,7 @@ module.exports = {
 
             const ping = reply.createdTimestamp - interaction.createdTimestamp;
 
-            interaction.editReply(`Pong! Client ${ping}ms | Websocket: ${client.ws.ping}ms`);
+            interaction.editReply(`Pong! Client ${ping}ms  | Websocket: ${client.ws.ping}ms`);
         } catch (error) {
             console.error("Error fetching or calculating ping:", error);
             interaction.followUp("There was an error while fetching or calculating the ping.");

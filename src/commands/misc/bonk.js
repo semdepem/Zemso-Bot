@@ -25,7 +25,7 @@ module.exports = {
         const embed = new EmbedBuilder()
             .setColor('#0099ff')
             .setTitle('Bonk!')
-            .setDescription(`${interaction.user.username} bonked ${targetUser.username}.`)
+            .setDescription(`${interaction.user.username} bonked ${targetUser.toString()}.`)
             .setImage('https://media.tenor.com/5YrUft9OXfUAAAAC/bonk-doge.gif'); 
 
         interaction.followUp({ embeds: [embed] });

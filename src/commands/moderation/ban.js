@@ -67,6 +67,7 @@ module.exports = {
 
     name: 'ban',
     description: 'Bans a member from the server',
+    devsOnly: true,
     options: [
         {
             name: 'target-user',

@@ -48,7 +48,7 @@ module.exports = {
             }
 
             setTimeout(async () => {
-                await targetUser.ban({ reason });
+                await targetUser.kick({ reason });
                 await interaction.editReply(`User ${targetUser} was kicked\nReason: ${reason}`);
             }, 2000); 
         } catch (error) {
@@ -60,13 +60,13 @@ module.exports = {
             await targetUser.kick({ reason });
             await interaction.editReply(`user ${targetUser} was kicked\nReason: ${reason}`);
         } catch (error) {
-            console.log(`There was an error when banning: ${error}`);
+            console.log(`There was an error when kicking: ${error}`);
         }
     },
 
     name: "kick",
     description: 'Kicks a member from server',
-    //devOnly: Boolean,
+    devOnly: true,
     //testOnly: Boolean,
     options: [
         {
