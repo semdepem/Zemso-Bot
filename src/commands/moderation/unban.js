@@ -23,7 +23,20 @@ module.exports = {
         }
 
         try {
+            // Fetch the user object to get the username and discriminator
+            const targetUser = await client.users.fetch(targetUserId);
+
+            // Unban the user
             await interaction.guild.members.unban(targetUserId, reason);
+
+            // Send a DM to the unbanned user
+            if (targetUser) {
+                await targetUser.send(`You have been unbanned from ${interaction.guild.name}.\nReason: ${reason}`);
+            } else {
+                console.error(`Cannot send a DM to the unbanned user. DMs may be disabled or the user has blocked the bot.`);
+            }
+
+            // Reply in the interaction channel
             await interaction.editReply(`User <@${targetUserId}> was unbanned.\nReason: ${reason}`);
         } catch (error) {
             console.error(`There was an error when unbanning: ${error}`);

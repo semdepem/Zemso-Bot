@@ -24,9 +24,21 @@ module.exports = async (client, interaction) => {
         }
 
         if (commandObject.testOnly) {
-            const allowedTestServers = [testServer, steamGamers];
+            const allowedTestServers = [testServer];
 
-            if (!allowedTestServers.includes(interaction.member.id)) {
+            if (!allowedTestServers.includes(interaction.guild.id)) {
+                interaction.reply({
+                    content: 'This command cannot be run here',
+                    ephemeral: true,
+                });
+                return;
+            }
+        }
+
+        if (commandObject.steamGamersOnly) {
+            const allowedSteamGamers = [steamGamers];
+
+            if (!allowedSteamGamers.includes(interaction.guild.id)) {
                 interaction.reply({
                     content: 'This command cannot be run here',
                     ephemeral: true,

@@ -7,7 +7,7 @@ module.exports = (expections = []) => {
     const commandCatagories = getAllFiles(
         path.join(__dirname, '..', 'commands'),
         true 
-    )
+    );
 
     for (const commandCatagory of commandCatagories){
         const commandFiles = getAllFiles(commandCatagory);
@@ -22,5 +22,5 @@ module.exports = (expections = []) => {
         }
     }    
 
-    return localCommands
+    return localCommands;
 }

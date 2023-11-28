@@ -40,6 +40,21 @@ module.exports = {
             return;
         }
 
+        try {
+            if (targetUser) {
+                await targetUser.send(`You have been kicked from ${interaction.guild.name}.\nReason: ${reason}`);
+            } else {
+                console.error(`Cannot send a DM to ${targetUser.user.tag}. DMs may be disabled or the user has blocked the bot.`);
+            }
+
+            setTimeout(async () => {
+                await targetUser.ban({ reason });
+                await interaction.editReply(`User ${targetUser} was kicked\nReason: ${reason}`);
+            }, 2000); 
+        } catch (error) {
+            console.error(`Cannot send a DM to ${targetUser.user.tag}. DMs may be disabled or the user has blocked the bot.`);
+        }
+
         //kick the targetUser
         try {
             await targetUser.kick({ reason });

@@ -26,7 +26,7 @@ module.exports = {
             .setColor('#0099ff')
             .setTitle('Bonk!')
             .setDescription(`${interaction.user.username} bonked ${targetUser.username}.`)
-            .setImage('#'); //This still needs work because it does not work -_-
+            .setImage('https://media.tenor.com/5YrUft9OXfUAAAAC/bonk-doge.gif'); 
 
         interaction.followUp({ embeds: [embed] });
     },
