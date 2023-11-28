@@ -1,4 +1,4 @@
-const { testServer, testServer2, supportServer, steamGamers } = require("../../../config.json");
+const { testServer, steamGamers } = require("../../../config.json");
 const areCommandsDifferent = require("../../utils/areCommandsDifferent");
 const getApplicationsCommands = require("../../utils/getApplicationsCommands");
 const getLocalCommands = require("../../utils/getLocalCommands");
@@ -6,7 +6,7 @@ const getLocalCommands = require("../../utils/getLocalCommands");
 module.exports = async (client) => {
     try {
         const localCommands = getLocalCommands();
-        const applicationCommands = await getApplicationsCommands(client, testServer, testServer2, supportServer, steamGamers);
+        const applicationCommands = await getApplicationsCommands(client, testServer, steamGamers);
 
         for (const localCommand of localCommands) {
             const { name, description, options } = localCommand;
@@ -28,7 +28,7 @@ module.exports = async (client) => {
                         options,
                     });
 
-                    console.log(`Deleted command "${name}".`);
+                    console.log(`Edited command "${name}".`);
                 }
             } else {
                 if (localCommand.deleted){

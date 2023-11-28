@@ -25,7 +25,8 @@ module.exports = {
         const embed = new EmbedBuilder()
             .setColor('#0099ff')
             .setTitle('Bonk!')
-            .setDescription(`${interaction.user.username} bonked ${targetUser.username}.`);
+            .setDescription(`${interaction.user.username} bonked ${targetUser.username}.`)
+            .setImage('#'); //This still needs work because it does not work -_-
 
         interaction.followUp({ embeds: [embed] });
     },
