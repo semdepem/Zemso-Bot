@@ -6,7 +6,7 @@ const getLocalCommands = require("../../utils/getLocalCommands");
 module.exports = async (client) => {
     try {
         const localCommands = getLocalCommands();
-        const applicationCommands = await getApplicationsCommands(client, steamGamers);
+        const applicationCommands = await getApplicationsCommands(client, testServer, steamGamers);
 
         for (const localCommand of localCommands) {
             const { name, description, options } = localCommand;

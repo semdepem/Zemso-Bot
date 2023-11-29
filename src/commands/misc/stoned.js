@@ -2,7 +2,7 @@ const { EmbedBuilder, ApplicationCommandOptionType} = require('discord.js');
 
 module.exports = {
         name: 'stoned',
-        description: 'kanker turk',
+        description: 'Throw stones to someone',
         options: [
             {
                 name: 'target-user',
@@ -14,8 +14,9 @@ module.exports = {
 
         callback: async (client, interaction) => {
             await interaction.deferReply();
-    
-               const targetUserInput = interaction.options.get('target-user')?.value;
+
+                const Stoner = interaction.user;
+                const targetUserInput = interaction.options.get('target-user')?.value;
 
                let targetUser;
                if (targetUserInput) {
@@ -32,9 +33,10 @@ module.exports = {
 
                try {
                 if (targetUser) {
-                    await targetUser.send(`je wordt gesteenigd door mensen uit ${interaction.guild.name}.\n`);
+                    await targetUser.send(`you got stoned by ${Stoner.username}!!!! from ${interaction.guild.name}.\n`);
+                    await targetUser.send(`https://media.tenor.com/Ov8pRwGxwxMAAAAi/haram-stoned.gif\n`);
                 } else {
-                    console.error(`Cannot send a DM to ${targetUser.user.tag}. DMs may be disabled or the user has blocked the bot.`);
+                    console.error(`Cannot send a DM to ${targetUser.user}. DMs may be disabled or the user has blocked the bot.`);
                 }
     
                 setTimeout(async () => {
@@ -47,7 +49,18 @@ module.exports = {
                     interaction.followUp({ embeds: [embed] });
                 }, 200); 
             } catch (error) {
-                console.error(`Cannot send a DM to ${targetUser.user.tag}. DMs may be disabled or the user has blocked the bot.`);
+            
+                setTimeout(async () => {
+                    const embed = new EmbedBuilder()
+                    .setColor('#0099ff')
+                    .setTitle('Stoned!')
+                    .setDescription(`${interaction.user.username} Stoned ${targetUser}.`)
+                    .setImage('https://media.tenor.com/Ov8pRwGxwxMAAAAi/haram-stoned.gif'); 
+
+                    interaction.followUp({ embeds: [embed] });
+                }, 200); 
+       
+                console.error(`Cannot send a DM to ${targetUser.user}. DMs may be disabled or the user has blocked the bot.`);
             }
         },
 }
