@@ -21,19 +21,18 @@ module.exports = {
             targetUser = interaction.user;
         }
 
-        const member = await interaction.guild.members.fetch(targetUser.id); 
-        const roles = member.roles.cache.map(role => role.name);
+        const member = await interaction.guild.members.fetch(targetUser.id);
         const highestRole = member.roles.highest.name;
 
         const embed = new EmbedBuilder()
             .setColor('#' + (Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0'))
             .setTitle(`User Info - ${targetUser.tag}`)
             .setThumbnail(targetUser.displayAvatarURL())
-            .setFields(
+            .setFields( 
                 { name: 'Account Created', value: targetUser.createdAt.toUTCString(), inline: true },
                 { name: 'Joined Guild', value: member.joinedAt.toUTCString(), inline: true },
                 { name: 'Highest Role', value: highestRole, inline: false },
-            )
+            );
 
         await interaction.editReply({ embeds: [embed] });
     },
@@ -43,7 +42,7 @@ module.exports = {
             name: 'target-user',
             description: 'Show the user\'s info',
             required: false,
-            type: ApplicationCommandOptionType.String,
+            type: ApplicationCommandOptionType.String, 
         },
     ],
 };

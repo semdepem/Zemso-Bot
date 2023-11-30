@@ -17,7 +17,7 @@ eventHandler(client);
 
 client.on( 'ready', (c) => {
     client.user.setActivity({
-        name: 'your movements',
+        name: 'you from your window',
         type: ActivityType.Watching,
     });
 });

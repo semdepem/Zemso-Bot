@@ -14,6 +14,8 @@ module.exports = {
         } catch (error) {
             console.error("Error fetching or calculating ping:", error);
             interaction.followUp("There was an error while fetching or calculating the ping.");
+
+            await interaction.deleteReply();
         }
     },
 };

@@ -13,6 +13,13 @@ module.exports = {
         const reason = interaction.options.get('reason')?.value || 'No reason provided';
 
         await interaction.deferReply();
+        
+        const hasAdminPermission = interaction.member.permissions.has(PermissionFlagsBits.Administrator);
+
+        if (!hasAdminPermission) {
+            await interaction.editReply('You do not have the necessary permissions to use this command.');
+            return;
+        }
 
         const targetUser = await interaction.guild.members.fetch(targetUserId);
 
@@ -48,7 +55,7 @@ module.exports = {
             }
 
             setTimeout(async () => {
-                await targetUser.kick({ reason });
+               // await targetUser.kick({ reason });
                 await interaction.editReply(`User ${targetUser} was kicked\nReason: ${reason}`);
             }, 2000); 
         } catch (error) {

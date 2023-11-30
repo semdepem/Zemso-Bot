@@ -17,6 +17,13 @@ module.exports = {
 
         const targetBan = bannedUsers.find((ban) => ban.user.id === targetUserId);
 
+        const hasAdminPermission = interaction.member.permissions.has(PermissionFlagsBits.Administrator);
+
+        if (!hasAdminPermission) {
+            await interaction.editReply('You do not have the necessary permissions to use this command.');
+            return;
+        }
+
         if (!targetBan) {
             await interaction.editReply('This user is not banned in this server.');
             return;
