@@ -1,7 +1,7 @@
 const { EmbedBuilder, ApplicationCommandOptionType } = require('discord.js');
 
 module.exports = {
-    name: 'stoned',
+    name: 'stone',
     description: 'Throw stones at someone',
     options: [
         {
