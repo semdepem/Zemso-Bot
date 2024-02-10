@@ -3,6 +3,14 @@ const { EmbedBuilder, ApplicationCommandOptionType } = require('discord.js');
 module.exports = {
     name: 'pfp',
     description: 'Shows the pfp of the user',
+    options: [
+        {
+            name: 'target-user',
+            description: 'The user to show the profile picture (mention or user ID)',
+            required: false,
+            type: ApplicationCommandOptionType.String,
+        },
+    ],
 
     callback: async (client, interaction) => {
         await interaction.deferReply();
@@ -30,12 +38,5 @@ module.exports = {
         await interaction.editReply({ embeds: [embed] });
     },
 
-    options: [
-        {
-            name: 'target-user',
-            description: 'The user to show the profile picture (mention or user ID)',
-            required: false,
-            type: ApplicationCommandOptionType.String,
-        },
-    ],
+   
 };
