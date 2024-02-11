@@ -3,6 +3,14 @@ const { EmbedBuilder, ApplicationCommandOptionType } = require('discord.js');
 module.exports = {
     name: 'userinfo',
     description: 'Show the user\'s information',
+    options: [
+        {
+            name: 'target-user',
+            description: 'Show the user\'s info',
+            required: false,
+            type: ApplicationCommandOptionType.String, 
+        },
+    ],
 
     callback: async (client, interaction) => {
         await interaction.deferReply();
@@ -37,12 +45,5 @@ module.exports = {
         await interaction.editReply({ embeds: [embed] });
     },
 
-    options: [
-        {
-            name: 'target-user',
-            description: 'Show the user\'s info',
-            required: false,
-            type: ApplicationCommandOptionType.String, 
-        },
-    ],
+ 
 };
