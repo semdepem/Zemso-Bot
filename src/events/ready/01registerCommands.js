@@ -1,4 +1,4 @@
-const { testServer, steamGamers } = require("../../../config.json");
+const { steamGamers } = require("../../../config.json");
 const areCommandsDifferent = require("../../utils/areCommandsDifferent");
 const getApplicationsCommands = require("../../utils/getApplicationsCommands");
 const getLocalCommands = require("../../utils/getLocalCommands");
@@ -6,7 +6,7 @@ const getLocalCommands = require("../../utils/getLocalCommands");
 module.exports = async (client) => {
     try {
         const localCommands = getLocalCommands();
-        const applicationCommands = await getApplicationsCommands(client, testServer, steamGamers);
+        const applicationCommands = await getApplicationsCommands(client, steamGamers);
 
         for (const localCommand of localCommands) {
             const { name, description, options } = localCommand;

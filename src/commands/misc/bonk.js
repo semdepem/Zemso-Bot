@@ -1,8 +1,16 @@
-const { EmbedBuilder } = require('discord.js');
+const { EmbedBuilder, ApplicationCommandOptionType } = require('discord.js');
 
 module.exports = {
     name: 'bonk',
     description: 'Bonks the user',
+    options: [
+        {
+            name: 'target-user',
+            description: 'The user to show the profile picture (mention or user ID)',
+            required: false,
+            type: ApplicationCommandOptionType.String,
+        },
+    ],
     
 
     callback: async (client, interaction) => {
